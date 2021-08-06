@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
-const NavBar = () => {
+const Header = () => {
   return (
     <Navbar bg="light" variant="light">
       <Container>
@@ -16,4 +16,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Header;

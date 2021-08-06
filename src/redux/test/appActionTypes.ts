@@ -1,4 +1,3 @@
-export enum TestActionTypes {
-  TEST_ACTION = 'TEST_ACTION',
+export enum AppActionTypes {
   GET_ACCESS = 'GET_ACCESS',
 }

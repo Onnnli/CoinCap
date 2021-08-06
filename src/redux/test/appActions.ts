@@ -1,33 +1,26 @@
 import { push } from 'connected-react-router';
 
-import { TestActionTypes } from './testActionTypes';
+import { AppActionTypes } from './appActionTypes';
 import { Dispatch } from 'redux';
 import { apiService } from '../../services/apiService';
 
-export const testActions = {
-  testAction: () => {
+interface IAccess {
+  [k: string]: string | number;
+}
+
+export const appActions = {
+  getAssets: (limit: number) => {
     return async (dispatch: Dispatch) => {
       try {
-        dispatch(testActions.testActionSuccess(1));
-        dispatch(push('/second'));
-      } catch (e) {
-        console.log(e);
-      }
-    };
-  },
-  testActionSuccess: (number: number) => ({
-    payload: number,
-    type: TestActionTypes.TEST_ACTION,
-  }),
-  getAssets: () => {
-    return async (dispatch: Dispatch) => {
-      try {
-        const response = await apiService.getAssets();
-        console.log(response.data.data);
+        const response = await apiService.getAssets(limit);
+        dispatch(appActions.getAccessSuccess(response.data.data));
       } catch (e) {
         console.warn(e);
       }
     };
   },
-  getAccessSuccess: access => ({}),
+  getAccessSuccess: (access: IAccess) => ({
+    payload: access,
+    type: AppActionTypes.GET_ACCESS,
+  }),
 };

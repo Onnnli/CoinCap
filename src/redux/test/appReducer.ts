@@ -1,23 +1,23 @@
 import { handleActions } from 'redux-actions';
 
-import { TestActionTypes } from './testActionTypes';
+import { AppActionTypes } from './appActionTypes';
 
 interface IInitialState {
-  number?: number;
+  [K: string]: string | number;
 }
 
-const initialState = null;
+const initialState = {};
 
 // @ts-ignore
-export const testReducer = handleActions(
+export const appReducer = handleActions(
   {
-    [TestActionTypes.TEST_ACTION]: (
+    [AppActionTypes.GET_ACCESS]: (
       state: IInitialState,
-      action: { payload: number }
+      action: { payload: IInitialState }
     ) => {
       return {
         ...state,
-        number: action.payload,
+        access: action.payload,
       };
     },
   },

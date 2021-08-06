@@ -1,50 +1,45 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
-const TableX = () => {
+import { Button, Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { accessSelector } from '../redux/test/appSelectors';
+const CryptoInfoTable = () => {
+  const access = useSelector(accessSelector);
+
   return (
-    <Table responsive="md">
+    <Table>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Table heading</th>
-          <th>Table heading</th>
-          <th>Table heading</th>
-          <th>Table heading</th>
-          <th>Table heading</th>
-          <th>Table heading</th>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>symbol</th>
+          <th>priceUsd</th>
+          <th>marketCapUsd</th>
+          <th>supply</th>
+          <th>volumeUsd24Hr</th>
+          <th>vwap24Hr</th>
+          <th>changePercent24Hr</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-          <td>Table cell</td>
-        </tr>
+        {access?.map((elem: { [K: string]: string }) => (
+          <tr key={elem.id}>
+            <td>{elem.rank}</td>
+            <td>{elem.name}</td>
+            <td>{elem.symbol}</td>
+            <td>{elem.priceUsd}</td>
+            <td>{elem.marketCapUsd}</td>
+            <td>{elem.supply}</td>
+            <td>{elem.volumeUsd24Hr}</td>
+            <td>{elem.vwap24Hr}</td>
+            <td>{elem.changePercent24Hr}</td>
+            <td>
+              <Button variant="primary">+</Button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   );
 };
 
-export default Table;
+export default CryptoInfoTable;
