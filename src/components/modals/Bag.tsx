@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { FC, memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 import { walletInfoSelect } from '../../redux/wallet/walletSelectors';
 import { walletActions } from '../../redux/wallet/walletActions';
 
-const Bag = () => {
+interface IBag {
+  onClose: () => void;
+}
+
+const Bag: FC<IBag> = ({ onClose }) => {
   const dispatch = useDispatch();
   const walletInformation = useSelector(walletInfoSelect);
 
-  const clickHandler = (id: any, amount: number, price: string | number) => {
-    dispatch(walletActions.deleteRequest({ id, amount, price }));
-  };
+  const clickHandler = useCallback(
+    (id: any, amount: number, price: string | number) => {
+      dispatch(walletActions.deleteRequest({ id, amount, price }));
+      onClose();
+    },
+    [dispatch, onClose]
+  );
 
   return (
     <div>
@@ -31,4 +39,4 @@ const Bag = () => {
   );
 };
 
-export default Bag;
+export default memo(Bag);

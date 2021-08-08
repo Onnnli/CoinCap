@@ -38,7 +38,7 @@ const ChartList: FC<IChartList> = ({ clickAdd }) => {
   );
 
   return (
-    <Table>
+    <Table className="coin-list">
       <thead>
         <tr>
           {headerTable.map(title => (

@@ -1,0 +1,9 @@
+@import '_variable.scss';
+
+.coin-list {
+  margin-top: 60px;
+  background-color: aliceblue;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: $shadow;
+}

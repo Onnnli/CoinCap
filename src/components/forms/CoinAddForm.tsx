@@ -9,9 +9,10 @@ import { IAssets } from '../../Interfaces/assets';
 
 interface IAddCryptoForm {
   chooseElem?: IAssets;
+  onClose: () => void;
 }
 
-const CoinAddForm: FC<IAddCryptoForm> = ({ chooseElem }) => {
+const CoinAddForm: FC<IAddCryptoForm> = ({ chooseElem, onClose }) => {
   const dispatch = useDispatch();
   const schema = yup.object().shape({
     amount: yup
@@ -25,8 +26,9 @@ const CoinAddForm: FC<IAddCryptoForm> = ({ chooseElem }) => {
 
       dispatch(walletActions.addWallet(totalPrice));
       dispatch(walletActions.addWalletInfo(chooseElem, Number(values.amount)));
+      onClose();
     },
-    [dispatch, chooseElem]
+    [dispatch, chooseElem, onClose]
   );
   return (
     <Formik

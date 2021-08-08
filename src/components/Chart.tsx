@@ -30,7 +30,8 @@ const Chart: FC<any> = ({ data, changeInterval }) => {
             type="monotone"
             dataKey="uv"
             stroke="#82ca9d"
-            activeDot={{ r: 3 }}
+            strokeWidth={4}
+            activeDot={{ r: 6 }}
             dot={false}
           />
         </LineChart>

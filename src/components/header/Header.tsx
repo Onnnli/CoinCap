@@ -1,9 +1,9 @@
 import React, { FC, memo, useState } from 'react';
-import { Container, Navbar, Row } from 'react-bootstrap';
+import { Container, Navbar } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import numeral from 'numeral';
 
 import { accessSelector } from '../../redux/app/appSelectors';
-import { formatter } from '../../utils/formatter';
 import BagInfo from './BagInfo';
 import {
   differencePercentSelect,
@@ -12,17 +12,19 @@ import {
 } from '../../redux/wallet/walletSelectors';
 import ModalWrapper from '../modals/ModalWrapper';
 import Bag from '../modals/Bag';
+import { IAssets } from '../../Interfaces/assets';
 
-const Header: FC<any> = () => {
+const Header: FC = () => {
   const access = useSelector(accessSelector);
-  const topCrypto = access?.slice(0, 3);
+  const topCoin = access?.slice(0, 3);
+
   const [show, setShow] = useState(false);
 
   const wallet = useSelector(walletSelect);
-  const diff = useSelector(differenceSelect);
-  const diffPercent = useSelector(differencePercentSelect);
+  const difference = useSelector(differenceSelect);
+  const differencePercent = useSelector(differencePercentSelect);
 
-  const openWallet = () => {
+  const openBag = () => {
     setShow(true);
   };
 
@@ -31,24 +33,24 @@ const Header: FC<any> = () => {
       <Navbar bg="light" variant="light">
         <Container>
           <Navbar.Brand href="/">Coincap</Navbar.Brand>
-          <Row>
-            {topCrypto?.map((elem: { [K: string]: string | number }) => (
-              <div key={elem.id}>
-                <h4>{elem.symbol}</h4>
-                <span>{formatter.format(Number(elem.priceUsd))}m</span>
+          <div className="top-coin-wrapper">
+            {topCoin?.map((topCoin: IAssets) => (
+              <div key={topCoin.id} className="top-coin-block">
+                <h4>{topCoin.symbol}</h4>
+                <span>{numeral(topCoin.priceUsd).format('($ 0.00)')}</span>
               </div>
             ))}
             <BagInfo
-              onClick={openWallet}
+              onClick={openBag}
               wallet={wallet}
-              diff={diff}
-              diffPercent={diffPercent}
+              difference={difference}
+              differencePercent={differencePercent}
             />
-          </Row>
+          </div>
         </Container>
       </Navbar>
-      <ModalWrapper show={show} onHide={() => setShow(false)}>
-        <Bag />
+      <ModalWrapper title="Your bag" show={show} onHide={() => setShow(false)}>
+        <Bag onClose={() => setShow(false)} />
       </ModalWrapper>
     </>
   );

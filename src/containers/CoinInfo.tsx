@@ -51,7 +51,7 @@ const CoinInfo: FC = (props: any) => {
             <img
               alt="logotype"
               style={{ height: '60px', width: '60px' }}
-              src={`https://static.coincap.io/assets/icons/${coinInfo.symbol.toLowerCase()}@2x.png`}
+              src={`https://static.coincap.io/assets/icons/${coinInfo?.symbol?.toLowerCase()}@2x.png`}
             />
             <h1>
               {coinInfo.name}({coinInfo.symbol})
@@ -89,8 +89,15 @@ const CoinInfo: FC = (props: any) => {
         </section>
       </Container>
 
-      <ModalWrapper show={visible} onHide={() => setVisible(false)}>
-        <CoinAddForm chooseElem={chooseElem} />
+      <ModalWrapper
+        title={chooseElem?.name}
+        show={visible}
+        onHide={() => setVisible(false)}
+      >
+        <CoinAddForm
+          onClose={() => setVisible(false)}
+          chooseElem={chooseElem}
+        />
       </ModalWrapper>
     </div>
   );

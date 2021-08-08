@@ -9,7 +9,7 @@ import { configureStore, history } from './redux/configureStore';
 import CoinInfo from './containers/CoinInfo';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/index.css';
+import './styles/styles.scss';
 
 export const store = configureStore(history);
 

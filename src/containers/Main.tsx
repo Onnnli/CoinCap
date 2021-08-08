@@ -13,8 +13,8 @@ import { IAssets } from '../Interfaces/assets';
 const Main: FC = () => {
   const dispatch = useDispatch();
 
-  const maxLimit = 2000;
-  const [limit, setLimit] = useState(10);
+  const maxLimit: number = 2000;
+  const [limit, setLimit] = useState<number>(20);
   const [visible, setVisible] = useState<boolean>(false);
   const [chooseElem, setChooseElem] = useState<IAssets | undefined>();
 
@@ -32,7 +32,7 @@ const Main: FC = () => {
   );
 
   const handleClick = useCallback(() => {
-    setLimit(limit + 10);
+    setLimit(limit + 20);
   }, [setLimit, limit]);
 
   return (
@@ -42,8 +42,15 @@ const Main: FC = () => {
         <ChartList clickAdd={openForm} />
         {limit <= maxLimit && <Pagination viewMore={handleClick} />}
       </Container>
-      <ModalWrapper show={visible} onHide={() => setVisible(false)}>
-        <CoinAddForm chooseElem={chooseElem} />
+      <ModalWrapper
+        title={chooseElem?.name}
+        show={visible}
+        onHide={() => setVisible(false)}
+      >
+        <CoinAddForm
+          chooseElem={chooseElem}
+          onClose={() => setVisible(false)}
+        />
       </ModalWrapper>
     </>
   );

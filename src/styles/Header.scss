@@ -1,0 +1,28 @@
+@import "_mixin.scss";
+
+.navbar {
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.top-coin-wrapper {
+  display: flex;
+  justify-content: space-between;
+  & .top-coin-block {
+    margin-right: 8px;
+  }
+}
+
+.top-coin-block {
+  display: flex;
+  & h4 {
+
+  }
+
+  & span {
+    color: green;
+    line-height: 23px;
+  }
+}
+
