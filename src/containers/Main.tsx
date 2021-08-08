@@ -1,39 +1,50 @@
-import React, { FC, useEffect } from 'react';
-import Header from '../components/Header';
-import CryptoInfoTable from '../components/CryptoInfoTable';
-import { Container, Pagination } from 'react-bootstrap';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { appActions } from '../redux/test/appActions';
-import { useState } from 'react';
+
+import ChartList from '../components/CoinList';
+import Header from '../components/header/Header';
+import { appActions } from '../redux/app/appActions';
+import ModalWrapper from '../components/modals/ModalWrapper';
+import CoinAddForm from '../components/forms/CoinAddForm';
+import Pagination from '../components/Pagination';
+import { IAssets } from '../Interfaces/assets';
 
 const Main: FC = () => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
 
-  let items = [];
-  for (let number = 1; number <= 5; number++) {
-    items.push(
-      <Pagination.Item
-        key={number}
-        onClick={() => setPage(number)}
-        active={number === page}
-      >
-        {number}
-      </Pagination.Item>
-    );
-  }
+  const maxLimit = 2000;
+  const [limit, setLimit] = useState(10);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [chooseElem, setChooseElem] = useState<IAssets | undefined>();
 
   useEffect(() => {
-    dispatch(appActions.getAssets(page * 10));
-  }, [dispatch, page]);
+    dispatch(appActions.getAssets(limit));
+  }, [dispatch, limit]);
+
+  const openForm = useCallback(
+    (e, elemList: IAssets) => {
+      e.stopPropagation();
+      setChooseElem(elemList);
+      setVisible(true);
+    },
+    [setChooseElem, setVisible]
+  );
+
+  const handleClick = useCallback(() => {
+    setLimit(limit + 10);
+  }, [setLimit, limit]);
 
   return (
     <>
-      <Header />;
+      <Header />
       <Container>
-        <CryptoInfoTable />
-        <Pagination>{items}</Pagination>
+        <ChartList clickAdd={openForm} />
+        {limit <= maxLimit && <Pagination viewMore={handleClick} />}
       </Container>
+      <ModalWrapper show={visible} onHide={() => setVisible(false)}>
+        <CoinAddForm chooseElem={chooseElem} />
+      </ModalWrapper>
     </>
   );
 };

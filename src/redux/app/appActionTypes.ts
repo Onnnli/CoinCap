@@ -1,0 +1,5 @@
+export enum appActionTypes {
+  GET_ACCESS = 'GET_ACCESS',
+  GET_COIN_INFO = 'GET_COIN_INFO',
+  GET_COIN_HISTORY = 'GET_COIN_HISTORY',
+}

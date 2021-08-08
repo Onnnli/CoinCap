@@ -1,0 +1,7 @@
+export enum walletActionTypes {
+  INIT_BAG_VALUE = 'INIT_BAG_VALUE',
+  INIT_BAG_INFO = 'INIT_BAG_INFO',
+  ADD_TO_WALLET = 'ADD_TO_WALLET',
+  WALLET_INFO = 'WALLET_INFO',
+  DELETE = 'DELETE',
+}
