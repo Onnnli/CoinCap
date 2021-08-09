@@ -1,0 +1,30 @@
+@import "_variable.scss";
+@import "_mixin.scss";
+
+.bag-coin {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__item {
+    padding: 10px;
+    display: flex;
+    flex-basis: 45%;
+    flex-direction: column;
+    border: 1px solid #333333;
+    justify-content: center;
+    align-items: center;
+
+    & button {
+      @include button();
+      background-color: #c04545;
+
+      &:hover, &:active, &:focus {
+        outline: none;
+        background-color: #963535FF;
+        box-shadow: $shadow;
+        border: none;
+      }
+    }
+  }
+}

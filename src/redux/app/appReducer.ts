@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 
 import { appActionTypes } from './appActionTypes';
-import { IAssets } from '../../Interfaces/assets';
+import { IAssets } from '../../interfaces/assets';
 
 interface IInitialState {
   access: IAssets[];

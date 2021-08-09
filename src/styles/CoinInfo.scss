@@ -1,0 +1,83 @@
+@import '_variable.scss';
+@import '_mixin.scss';
+
+.layout {
+  height: 100vh;
+}
+
+.coin-info {
+  padding: 60px 0;
+
+  &__wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+  }
+
+  &__img {
+    width: 60px;
+    height: 60px;
+    margin-right: 30px;
+  }
+
+  &__title {
+    font-size: 2em;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__rank {
+    background-color: $primary-color;
+    box-shadow: $shadow;
+    margin-top: 10px;
+
+  }
+
+  &__info {
+    display: flex;
+    max-width: 30%;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    flex-basis: 50%;
+    margin-bottom: 20px;
+  }
+
+  &__btn {
+    @include button();
+  }
+}
+
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: flex-end;
+
+  &__block-btn {
+    max-width: 50%;
+  }
+
+  &__btn {
+    @include button();
+    color: $text-color;
+    border-radius: 0;
+    background-color: #fff;
+    flex: 1;
+
+    &:hover, &:active, &:focus {
+      color: #fff;
+    }
+  }
+
+}
+

@@ -5,21 +5,23 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 
 import { walletActions } from '../../redux/wallet/walletActions';
-import { IAssets } from '../../Interfaces/assets';
+import { IAssets } from '../../interfaces/assets';
 
-interface IAddCryptoForm {
+interface IAddCoinForm {
   chooseElem?: IAssets;
   onClose: () => void;
 }
 
-const CoinAddForm: FC<IAddCryptoForm> = ({ chooseElem, onClose }) => {
+const AddCoinForm: FC<IAddCoinForm> = ({ chooseElem, onClose }) => {
   const dispatch = useDispatch();
+
   const schema = yup.object().shape({
     amount: yup
       .string()
       .required()
       .matches(/^(?!0\d)\d*(\.\d+)?$/, 'Is not in correct format'),
   });
+
   const handleSubmit = useCallback(
     values => {
       const totalPrice = Number(chooseElem?.priceUsd) * values.amount;
@@ -30,6 +32,7 @@ const CoinAddForm: FC<IAddCryptoForm> = ({ chooseElem, onClose }) => {
     },
     [dispatch, chooseElem, onClose]
   );
+
   return (
     <Formik
       onSubmit={handleSubmit}
@@ -62,4 +65,4 @@ const CoinAddForm: FC<IAddCryptoForm> = ({ chooseElem, onClose }) => {
   );
 };
 
-export default CoinAddForm;
+export default AddCoinForm;

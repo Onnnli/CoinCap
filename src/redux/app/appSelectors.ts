@@ -8,6 +8,7 @@ export const accessSelector = createSelector(
 );
 
 export const coinSelector = createSelector(accessSelectors, item => item.coin);
+
 export const historyCoinSelector = createSelector(
   accessSelectors,
   item => item.history

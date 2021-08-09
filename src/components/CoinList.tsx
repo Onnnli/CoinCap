@@ -5,7 +5,7 @@ import numeral from 'numeral';
 
 import { accessSelector } from '../redux/app/appSelectors';
 import { appActions } from '../redux/app/appActions';
-import { IAssets } from '../Interfaces/assets';
+import { IAssets } from '../interfaces/assets';
 
 interface IChartList {
   clickAdd: (
@@ -14,7 +14,7 @@ interface IChartList {
   ) => void;
 }
 
-const ChartList: FC<IChartList> = ({ clickAdd }) => {
+const CoinList: FC<IChartList> = ({ clickAdd }) => {
   const dispatch = useDispatch();
   const access = useSelector(accessSelector);
   const headerTable = [
@@ -40,7 +40,7 @@ const ChartList: FC<IChartList> = ({ clickAdd }) => {
   return (
     <Table className="coin-list">
       <thead>
-        <tr>
+        <tr className="coin-list__header">
           {headerTable.map(title => (
             <th key={title}>{title}</th>
           ))}
@@ -48,12 +48,16 @@ const ChartList: FC<IChartList> = ({ clickAdd }) => {
       </thead>
       <tbody>
         {access?.map((elemList: IAssets) => (
-          <tr key={elemList.id} onClick={e => handleClick(e, elemList.id)}>
+          <tr
+            className="coin-list__info"
+            key={elemList.id}
+            onClick={e => handleClick(e, elemList.id)}
+          >
             <td>{elemList.rank}</td>
-            <td>
+            <td className="coin-list__name">
               <img
                 alt="logotype"
-                style={{ height: '30px', width: '30px' }}
+                className="coin-list__img"
                 src={`https://static.coincap.io/assets/icons/${elemList.symbol.toLowerCase()}@2x.png`}
               />
               {elemList.name} ({elemList.symbol})
@@ -66,8 +70,11 @@ const ChartList: FC<IChartList> = ({ clickAdd }) => {
             <td>{numeral(elemList.volumeUsd24Hr).format('($ 0.00a)')}</td>
             <td>{numeral(elemList.changePercent24Hr).format('0.00')}%</td>
             <td>
-              <Button variant="primary" onClick={e => clickAdd(e, elemList)}>
-                ADD
+              <Button
+                className="coin-list__btn"
+                onClick={e => clickAdd(e, elemList)}
+              >
+                +
               </Button>
             </td>
           </tr>
@@ -77,4 +84,4 @@ const ChartList: FC<IChartList> = ({ clickAdd }) => {
   );
 };
 
-export default ChartList;
+export default CoinList;

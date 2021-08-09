@@ -1,28 +1,40 @@
-@import "_mixin.scss";
+@import '_variable.scss';
+@import '_mixin.scss';
 
 .navbar {
   border-bottom-left-radius: 7px;
   border-bottom-right-radius: 7px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: $shadow;
 }
 
-.top-coin-wrapper {
+.top-coin__wrapper {
   display: flex;
   justify-content: space-between;
-  & .top-coin-block {
-    margin-right: 8px;
-  }
-}
+  max-width: 600px;
+  width: 100%;
 
-.top-coin-block {
-  display: flex;
-  & h4 {
-
+  &__block {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
   }
 
-  & span {
+  &__title {
+    @include titleH4($text-color);
+    margin-right: 5px;
+  }
+
+  &__subtitle {
     color: green;
     line-height: 23px;
   }
+
+  &__img {
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+  }
 }
+
+
 

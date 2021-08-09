@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { walletActionTypes } from './walletActionTypes';
 import { getDifferencePercent } from '../../utils/differencePercent';
 import { store } from '../../index';
-import { IBagInfo } from '../../Interfaces/bag';
+import { IBagInfo } from '../../interfaces/bag';
 
 export const walletActions = {
   setBagValue: (value: number) => ({
@@ -21,8 +21,11 @@ export const walletActions = {
         const state = store.getState();
         const wallet = state.wallet.wallet;
         const totalBudget = Number(wallet) + price;
+
         const differencePercent = getDifferencePercent(wallet, totalBudget);
+
         localStorage.setItem('wallet', JSON.stringify(totalBudget));
+
         dispatch(
           walletActions.addToWallet(totalBudget, price, differencePercent)
         );
@@ -56,6 +59,7 @@ export const walletActions = {
         if (typeof walletInfoStorage === 'string') {
           walletValue = JSON.parse(walletInfoStorage);
         }
+
         const findWalletValueId = walletValue[newValue.id];
 
         let data;
@@ -97,6 +101,7 @@ export const walletActions = {
         );
         const price = Number(value.price) * Number(value.amount) * -1;
         dispatch(walletActions.delete(newWallet));
+        localStorage.setItem('walletInfo', JSON.stringify(newWallet));
         dispatch(walletActions.addWallet(price));
       } catch (e) {
         console.warn(e);

@@ -18,10 +18,10 @@ const ModalWrapper: FC<IModalOverlay> = ({ children, ...props }) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add {props.title}
+          {props.title}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body> {children}</Modal.Body>
+      <Modal.Body>{children}</Modal.Body>
     </Modal>
   );
 };

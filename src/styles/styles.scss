@@ -16,11 +16,22 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255)
+  background: #ffffff;
 }
 
 @import "_variable.scss";
 @import "_mixin.scss";
 
+/*header*/
 @import "Header.scss";
+@import 'BagButton.scss';
+@import "Bag.scss";
+
+/*Main*/
 @import "CoinList.scss";
+
+/*coin info page*/
+@import "CoinInfo.scss";
+
+
+

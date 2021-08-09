@@ -1,9 +1,10 @@
-import React, { FC, memo, useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 
 import { walletInfoSelect } from '../../redux/wallet/walletSelectors';
 import { walletActions } from '../../redux/wallet/walletActions';
+import numeral from 'numeral';
 
 interface IBag {
   onClose: () => void;
@@ -22,14 +23,14 @@ const Bag: FC<IBag> = ({ onClose }) => {
   );
 
   return (
-    <div>
-      {Object.values(walletInformation).map((elem: any) => (
-        <div key={elem.id}>
-          <h4>{elem.name}</h4>
-          <h4>{elem.price}</h4>
-          <h4>{elem.amount}</h4>
+    <div className="bag-coin">
+      {Object.values(walletInformation).map((coin: any) => (
+        <div key={coin.id} className="bag-coin__item">
+          <h4>{coin.name}</h4>
+          <h4>{numeral(coin.price).format('($ 0.00)')}</h4>
+          <h4>{coin.amount}</h4>
           <Button
-            onClick={() => clickHandler(elem.id, elem.amount, elem.price)}
+            onClick={() => clickHandler(coin.id, coin.amount, coin.price)}
           >
             delete
           </Button>
@@ -39,4 +40,4 @@ const Bag: FC<IBag> = ({ onClose }) => {
   );
 };
 
-export default memo(Bag);
+export default Bag;

@@ -1,12 +1,25 @@
-@mixin title() {
-  color: #000000;
-  font-family: Montserrat, sans-serif;
-  font-size: 38px;
-  font-weight: 700;
-  font-style: normal;
-  letter-spacing: normal;
-  line-height: 28px;
-  text-align: center;
-  text-transform: uppercase;
+@import '_variable.scss';
 
+@mixin titleH4($color) {
+  font-size: 1.6em;
+  color: $color;
+}
+
+@mixin titleH5($color) {
+  font-size: 1em;
+  color: $color;
+}
+
+@mixin button () {
+  display: flex;
+  background-color: $primary-color;
+  text-align: center;
+  border: none;
+  border-radius: $border-radius;
+  outline: none;
+  &:hover, &:active, &:focus {
+    outline: none;
+    background-color: #416644FF;
+    box-shadow: $shadow;
+  }
 }

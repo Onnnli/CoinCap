@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import numeral from 'numeral';
 
 import { accessSelector } from '../../redux/app/appSelectors';
-import BagInfo from './BagInfo';
+import BagButton from '../buttons/BagButton';
 import {
   differencePercentSelect,
   differenceSelect,
@@ -12,13 +12,13 @@ import {
 } from '../../redux/wallet/walletSelectors';
 import ModalWrapper from '../modals/ModalWrapper';
 import Bag from '../modals/Bag';
-import { IAssets } from '../../Interfaces/assets';
+import { IAssets } from '../../interfaces/assets';
 
 const Header: FC = () => {
   const access = useSelector(accessSelector);
   const topCoin = access?.slice(0, 3);
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<boolean>(false);
 
   const wallet = useSelector(walletSelect);
   const difference = useSelector(differenceSelect);
@@ -32,21 +32,27 @@ const Header: FC = () => {
     <>
       <Navbar bg="light" variant="light">
         <Container>
-          <Navbar.Brand href="/">Coincap</Navbar.Brand>
-          <div className="top-coin-wrapper">
+          <div className="top-coin__wrapper">
             {topCoin?.map((topCoin: IAssets) => (
-              <div key={topCoin.id} className="top-coin-block">
-                <h4>{topCoin.symbol}</h4>
-                <span>{numeral(topCoin.priceUsd).format('($ 0.00)')}</span>
+              <div key={topCoin.id} className="top-coin__block">
+                <img
+                  className="top-coin__img"
+                  alt="logotype"
+                  src={`https://static.coincap.io/assets/icons/${topCoin.symbol.toLowerCase()}@2x.png`}
+                />
+                <h4 className="top-coin__title">{topCoin.symbol}</h4>
+                <span className="top-coin__subtitle">
+                  {numeral(topCoin.priceUsd).format('($ 0.00)')}
+                </span>
               </div>
             ))}
-            <BagInfo
-              onClick={openBag}
-              wallet={wallet}
-              difference={difference}
-              differencePercent={differencePercent}
-            />
           </div>
+          <BagButton
+            onClick={openBag}
+            wallet={wallet}
+            difference={difference}
+            differencePercent={differencePercent}
+          />
         </Container>
       </Navbar>
       <ModalWrapper title="Your bag" show={show} onHide={() => setShow(false)}>

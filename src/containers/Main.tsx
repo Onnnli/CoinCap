@@ -1,14 +1,13 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
-import ChartList from '../components/CoinList';
+import CoinList from '../components/CoinList';
 import Header from '../components/header/Header';
 import { appActions } from '../redux/app/appActions';
 import ModalWrapper from '../components/modals/ModalWrapper';
-import CoinAddForm from '../components/forms/CoinAddForm';
-import Pagination from '../components/Pagination';
-import { IAssets } from '../Interfaces/assets';
+import AddCoinForm from '../components/forms/AddCoinForm';
+import { IAssets } from '../interfaces/assets';
 
 const Main: FC = () => {
   const dispatch = useDispatch();
@@ -38,16 +37,25 @@ const Main: FC = () => {
   return (
     <>
       <Header />
-      <Container>
-        <ChartList clickAdd={openForm} />
-        {limit <= maxLimit && <Pagination viewMore={handleClick} />}
-      </Container>
+      <section className="main-section">
+        <Container>
+          <div className="wrapper">
+            <CoinList clickAdd={openForm} />
+            {limit <= maxLimit && (
+              <Button className="coin-list__pagination" onClick={handleClick}>
+                View more
+              </Button>
+            )}
+          </div>
+        </Container>
+      </section>
+
       <ModalWrapper
         title={chooseElem?.name}
         show={visible}
         onHide={() => setVisible(false)}
       >
-        <CoinAddForm
+        <AddCoinForm
           chooseElem={chooseElem}
           onClose={() => setVisible(false)}
         />

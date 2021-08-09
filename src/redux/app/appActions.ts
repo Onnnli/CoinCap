@@ -6,7 +6,7 @@ import { Dispatch } from 'redux';
 import { appActionTypes } from './appActionTypes';
 import { apiService } from '../../services/apiService';
 import { walletActions } from '../wallet/walletActions';
-import { IAssets } from '../../Interfaces/assets';
+import { IAssets } from '../../interfaces/assets';
 
 interface IHistory {
   name: string;
@@ -28,12 +28,15 @@ export const appActions = {
 
         if (!wallet) {
           localStorage.setItem('wallet', '0');
+        } else {
+          dispatch(walletActions.setBagValue(Number(wallet)));
         }
+
         if (!walletInfo) {
-          localStorage.setItem('walletInfo', '{}');
+          localStorage.setItem('walletInfo', '[]');
+        } else {
+          dispatch(walletActions.setBagInfo(JSON.parse(walletInfo)));
         }
-        dispatch(walletActions.setBagValue(Number(wallet)));
-        dispatch(walletActions.setBagInfo(JSON.parse(walletInfo!)));
       } catch (e) {
         console.warn(e);
       }

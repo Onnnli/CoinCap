@@ -1,9 +1,49 @@
 @import '_variable.scss';
+@import '_mixin.scss';
+
+.main-section {
+  padding: 60px 0;
+  background: linear-gradient(to right, rgb(63, 81, 181), rgb(100, 181, 246)) rgb(255, 255, 255);
+}
 
 .coin-list {
-  margin-top: 60px;
-  background-color: aliceblue;
-  text-align: center;
-  border-radius: 3px;
-  box-shadow: $shadow;
+  .wrapper & {
+    padding: 10px 0 20px;
+    background-color: aliceblue;
+    text-align: center;
+    border-radius: 3px;
+    box-shadow: $shadow;
+  }
+  &__header {
+    font-size: 1em;
+    color: #333333;
+    padding: 6px;
+    text-align: center;
+  }
+  &__img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  &__info {
+    color: $text-color;
+    &:hover {
+      cursor: pointer;
+      background-color: lightblue;
+    }
+  }
+
+  &__name {
+      text-align: left;
+  }
+
+  &__btn {
+    @include button();
+  }
+
+  &__pagination {
+    @include button();
+    margin: 0 auto;
+  }
 }
