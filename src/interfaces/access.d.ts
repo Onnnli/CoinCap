@@ -1,4 +1,4 @@
-export interface IAssets {
+export interface IAccess {
   id: string;
   rank: number;
   symbol: string;

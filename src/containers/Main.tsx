@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import CoinList from '../components/CoinList';
 import Header from '../components/header/Header';
 import { appActions } from '../redux/app/appActions';
-import ModalWrapper from '../components/modals/ModalWrapper';
+import ModalWrapper from '../components/ModalWrapper';
 import AddCoinForm from '../components/forms/AddCoinForm';
-import { IAssets } from '../interfaces/assets';
+import { IAccess } from '../interfaces/access';
 
 const Main: FC = () => {
   const dispatch = useDispatch();
@@ -15,14 +15,14 @@ const Main: FC = () => {
   const maxLimit: number = 2000;
   const [limit, setLimit] = useState<number>(20);
   const [visible, setVisible] = useState<boolean>(false);
-  const [chooseElem, setChooseElem] = useState<IAssets | undefined>();
+  const [chooseElem, setChooseElem] = useState<IAccess | undefined>();
 
   useEffect(() => {
     dispatch(appActions.getAssets(limit));
   }, [dispatch, limit]);
 
   const openForm = useCallback(
-    (e, elemList: IAssets) => {
+    (e, elemList: IAccess) => {
       e.stopPropagation();
       setChooseElem(elemList);
       setVisible(true);
@@ -37,7 +37,7 @@ const Main: FC = () => {
   return (
     <>
       <Header />
-      <section className="main-section">
+      <main className="main">
         <Container>
           <div className="wrapper">
             <CoinList clickAdd={openForm} />
@@ -48,7 +48,7 @@ const Main: FC = () => {
             )}
           </div>
         </Container>
-      </section>
+      </main>
 
       <ModalWrapper
         title={chooseElem?.name}

@@ -5,18 +5,19 @@ import numeral from 'numeral';
 
 import { accessSelector } from '../redux/app/appSelectors';
 import { appActions } from '../redux/app/appActions';
-import { IAssets } from '../interfaces/assets';
+import { IAccess } from '../interfaces/access';
 
 interface IChartList {
   clickAdd: (
     e: React.MouseEvent<HTMLElement, MouseEvent>,
-    elemList: IAssets
+    elemList: IAccess
   ) => void;
 }
 
 const CoinList: FC<IChartList> = ({ clickAdd }) => {
   const dispatch = useDispatch();
   const access = useSelector(accessSelector);
+
   const headerTable = [
     'Rank',
     'Name',
@@ -47,7 +48,7 @@ const CoinList: FC<IChartList> = ({ clickAdd }) => {
         </tr>
       </thead>
       <tbody>
-        {access?.map((elemList: IAssets) => (
+        {access?.map((elemList: IAccess) => (
           <tr
             className="coin-list__info"
             key={elemList.id}

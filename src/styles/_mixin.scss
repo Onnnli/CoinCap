@@ -1,25 +1,26 @@
 @import '_variable.scss';
 
-@mixin titleH4($color) {
-  font-size: 1.6em;
-  color: $color;
+@mixin title($c, $fz) {
+  font-size: $fz;
+  color: $c;
 }
 
-@mixin titleH5($color) {
-  font-size: 1em;
-  color: $color;
-}
-
-@mixin button () {
-  display: flex;
+@mixin button($br) {
   background-color: $primary-color;
+  display: flex;
   text-align: center;
   border: none;
-  border-radius: $border-radius;
+  border-radius: $br;
   outline: none;
   &:hover, &:active, &:focus {
     outline: none;
     background-color: #416644FF;
     box-shadow: $shadow;
   }
+}
+
+@mixin image($w, $h) {
+  width: $w;
+  height: $h;
+  margin-right: 30px;
 }

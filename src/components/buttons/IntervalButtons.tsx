@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 
 interface IIntervalButtons {
@@ -12,28 +12,60 @@ const IntervalButtons: FC<IIntervalButtons> = ({
 }) => {
   return (
     <ButtonGroup className="chart__block-btn">
-      <Button className="chart__btn" onClick={() => changeInterval('m1')}>
+      <Button
+        active={interval === 'm1'}
+        className="chart__btn"
+        onClick={() => changeInterval('m1')}
+      >
         1min
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('m5')}>
+      <Button
+        active={interval === 'm5'}
+        className="chart__btn"
+        onClick={() => changeInterval('m5')}
+      >
         5min
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('m15')}>
+      <Button
+        active={interval === 'm15'}
+        className="chart__btn"
+        onClick={() => changeInterval('m15')}
+      >
         15min
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('m30')}>
+      <Button
+        active={interval === 'm30'}
+        className="chart__btn"
+        onClick={() => changeInterval('m30')}
+      >
         30min
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('h1')}>
+      <Button
+        active={interval === 'h1'}
+        className="chart__btn"
+        onClick={() => changeInterval('h1')}
+      >
         1hr
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('h2')}>
+      <Button
+        active={interval === 'h2'}
+        className="chart__btn"
+        onClick={() => changeInterval('h2')}
+      >
         2hr
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('h6')}>
+      <Button
+        active={interval === 'h6'}
+        className="chart__btn"
+        onClick={() => changeInterval('h6')}
+      >
         6hr
       </Button>
-      <Button className="chart__btn" onClick={() => changeInterval('h12')}>
+      <Button
+        active={interval === 'h12'}
+        className="chart__btn"
+        onClick={() => changeInterval('h12')}
+      >
         12hr
       </Button>
       <Button
@@ -47,4 +79,4 @@ const IntervalButtons: FC<IIntervalButtons> = ({
   );
 };
 
-export default IntervalButtons;
+export default memo(IntervalButtons);

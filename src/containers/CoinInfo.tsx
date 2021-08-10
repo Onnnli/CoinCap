@@ -6,8 +6,8 @@ import { coinSelector, historyCoinSelector } from '../redux/app/appSelectors';
 import Header from '../components/header/Header';
 import { appActions } from '../redux/app/appActions';
 import numeral from 'numeral';
-import { IAssets } from '../interfaces/assets';
-import ModalWrapper from '../components/modals/ModalWrapper';
+import { IAccess } from '../interfaces/access';
+import ModalWrapper from '../components/ModalWrapper';
 import AddCoinForm from '../components/forms/AddCoinForm';
 import Chart from '../components/Chart';
 import IntervalButtons from '../components/buttons/IntervalButtons';
@@ -16,26 +16,20 @@ const CoinInfo: FC = (props: any) => {
   const coinInfo = useSelector(coinSelector);
   const historyCoin = useSelector(historyCoinSelector);
   const [visible, setVisible] = useState<boolean>(false);
-  const [chooseElem, setChooseElem] = useState<IAssets | undefined>();
+  const [chooseElem, setChooseElem] = useState<IAccess | undefined>();
   const [interval, setInterval] = useState<string>('d1');
   const dispatch = useDispatch();
 
   const { id } = props.match.params;
 
   const openForm = useCallback(
-    (e, elemList: IAssets) => {
+    (e, elemList: IAccess) => {
       e.stopPropagation();
       setChooseElem(elemList);
       setVisible(true);
     },
     [setChooseElem, setVisible]
   );
-
-  useEffect(() => {
-    if (performance.navigation.type === 1) {
-      dispatch(appActions.getCoinInfo(id));
-    }
-  }, [id]);
 
   useEffect(() => {
     dispatch(appActions.getHistoryCoin(id, interval));
@@ -51,7 +45,7 @@ const CoinInfo: FC = (props: any) => {
       <section className="coin-info">
         <Container>
           <div className="coin-info__wrapper">
-            <div className="coin-info__title">
+            <div className="coin-info__title-block">
               <img
                 className="coin-info__img"
                 alt="logotype"
@@ -65,12 +59,12 @@ const CoinInfo: FC = (props: any) => {
               </h1>
             </div>
 
-            <div className="coin-info__info">
-              <div className="coinInfo-info__item">
+            <div className="coin-info__info-block">
+              <div className="coin-info__item">
                 <span>Price</span>
                 <h4>{numeral(coinInfo.priceUsd).format('($ 0.00)')}</h4>
               </div>
-              <div className="coinInfo-info__item">
+              <div className="coin-info__item">
                 <span>Change</span>
                 <h4>{numeral(coinInfo.changePercent24Hr).format('0.00')}%</h4>
               </div>

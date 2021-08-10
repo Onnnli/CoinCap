@@ -1,0 +1,7 @@
+@import "_variable.scss";
+@import "_mixin.scss";
+@import '_sample.scss';
+
+.submit-button {
+  @extend %button-submit;
+}

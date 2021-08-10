@@ -10,9 +10,9 @@ import {
   differenceSelect,
   walletSelect,
 } from '../../redux/wallet/walletSelectors';
-import ModalWrapper from '../modals/ModalWrapper';
-import Bag from '../modals/Bag';
-import { IAssets } from '../../interfaces/assets';
+import ModalWrapper from '../ModalWrapper';
+import Bag from '../Bag';
+import { IAccess } from '../../interfaces/access';
 
 const Header: FC = () => {
   const access = useSelector(accessSelector);
@@ -32,8 +32,8 @@ const Header: FC = () => {
     <>
       <Navbar bg="light" variant="light">
         <Container>
-          <div className="top-coin__wrapper">
-            {topCoin?.map((topCoin: IAssets) => (
+          <div className="top-coin">
+            {topCoin?.map((topCoin: IAccess) => (
               <div key={topCoin.id} className="top-coin__block">
                 <img
                   className="top-coin__img"
@@ -56,7 +56,7 @@ const Header: FC = () => {
         </Container>
       </Navbar>
       <ModalWrapper title="Your bag" show={show} onHide={() => setShow(false)}>
-        <Bag onClose={() => setShow(false)} />
+        <Bag />
       </ModalWrapper>
     </>
   );

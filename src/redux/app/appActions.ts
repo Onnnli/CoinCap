@@ -6,7 +6,7 @@ import { Dispatch } from 'redux';
 import { appActionTypes } from './appActionTypes';
 import { apiService } from '../../services/apiService';
 import { walletActions } from '../wallet/walletActions';
-import { IAssets } from '../../interfaces/assets';
+import { IAccess } from '../../interfaces/access';
 
 interface IHistory {
   name: string;
@@ -52,7 +52,7 @@ export const appActions = {
       }
     };
   },
-  getAccessSuccess: (access: IAssets) => ({
+  getAccessSuccess: (access: IAccess) => ({
     payload: access,
     type: appActionTypes.GET_ACCESS,
   }),
@@ -67,7 +67,7 @@ export const appActions = {
       }
     };
   },
-  getCoinInfoSuccess: (info: IAssets) => ({
+  getCoinInfoSuccess: (info: IAccess) => ({
     payload: info,
     type: appActionTypes.GET_COIN_INFO,
   }),

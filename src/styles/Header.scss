@@ -1,5 +1,6 @@
-@import '_variable.scss';
-@import '_mixin.scss';
+@import 'variable';
+@import 'mixin';
+@import 'sample';
 
 .navbar {
   border-bottom-left-radius: 7px;
@@ -7,7 +8,7 @@
   box-shadow: $shadow;
 }
 
-.top-coin__wrapper {
+.top-coin {
   display: flex;
   justify-content: space-between;
   max-width: 600px;
@@ -20,8 +21,7 @@
   }
 
   &__title {
-    @include titleH4($text-color);
-    margin-right: 5px;
+    @extend %title-main-section;
   }
 
   &__subtitle {
@@ -30,11 +30,22 @@
   }
 
   &__img {
-    height: 30px;
-    width: 30px;
-    margin-right: 5px;
+    @include image(30px, 30px);
+    margin-right: 10px;
   }
 }
 
+.header-bag {
+  @extend %button-submit;
+  justify-content: space-between;
+
+  &__wallet {
+    margin-right: 10px;
+  }
+
+  &__item {
+    margin-right: 10px;
+  }
+}
 
 

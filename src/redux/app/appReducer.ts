@@ -1,16 +1,16 @@
 import { handleActions } from 'redux-actions';
 
 import { appActionTypes } from './appActionTypes';
-import { IAssets } from '../../interfaces/assets';
+import { IAccess } from '../../interfaces/access';
 
 interface IInitialState {
-  access: IAssets[];
-  coin: IAssets;
+  access: IAccess[];
+  coin: IAccess;
 }
 
 const initialState: IInitialState = {
   access: [],
-  coin: {} as IAssets,
+  coin: {} as IAccess,
 };
 
 // @ts-ignore

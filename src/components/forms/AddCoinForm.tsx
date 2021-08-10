@@ -5,10 +5,10 @@ import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 
 import { walletActions } from '../../redux/wallet/walletActions';
-import { IAssets } from '../../interfaces/assets';
+import { IAccess } from '../../interfaces/access';
 
 interface IAddCoinForm {
-  chooseElem?: IAssets;
+  chooseElem?: IAccess;
   onClose: () => void;
 }
 
@@ -56,7 +56,7 @@ const AddCoinForm: FC<IAddCoinForm> = ({ chooseElem, onClose }) => {
               {errors.amount}
             </Form.Control.Feedback>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="submit-button" variant="primary" type="submit">
             Add to wallet
           </Button>
         </Form>

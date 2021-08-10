@@ -21,17 +21,17 @@ body {
 
 @import "_variable.scss";
 @import "_mixin.scss";
-
-/*header*/
-@import "Header.scss";
-@import 'BagButton.scss';
-@import "Bag.scss";
+@import "_sample.scss";
 
 /*Main*/
-@import "CoinList.scss";
+@import "Main.scss";
 
 /*coin info page*/
 @import "CoinInfo.scss";
+
+/*modal*/
+@import "Bag.scss";
+@import "AddCoinForm.scss";
 
 
 

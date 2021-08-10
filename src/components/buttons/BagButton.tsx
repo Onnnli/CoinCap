@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import numeral from 'numeral';
 import { Button } from 'react-bootstrap';
 
@@ -29,4 +29,4 @@ const BagButton: FC<IBagButton> = ({
   );
 };
 
-export default BagButton;
+export default memo(BagButton);
